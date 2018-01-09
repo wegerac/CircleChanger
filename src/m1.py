@@ -93,6 +93,9 @@ class CircleChanger(object):
         self.circle = rg.Circle(rg.Point(x, y), radius)
         self.circle.fill_color = fill_color
         self.colors = colors
+        self.orig_color = fill_color
+        self.times = 0
+        self.length = len(self.colors)
         ################################################################
         # DONE: 2.
         #   First, READ the doc-string (specification) above.
@@ -411,12 +414,12 @@ class CircleChanger(object):
             :type index_of_color: int
         """
         ################################################################
-        # TODO: 7.
+        # DONE: 7.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the   run_test_change_color   function (below).
         #   Third, implement and test this method.
         ################################################################
-
+        self.circle.fill_color = self.colors[index_of_color]
     def change_to_original_color(self):
         """
         What comes in:
@@ -428,12 +431,12 @@ class CircleChanger(object):
                was constructed.
         """
         ################################################################
-        # TODO: 8.
+        # DONE: 8.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the   run_test_change_to_original_color   function
         #   (below).  Third, implement and test this method.
         ################################################################
-
+        self.circle.fill_color = self.orig_color
     def change_to_next_color_in_tuple(self):
         """
         What comes in:
@@ -467,11 +470,17 @@ class CircleChanger(object):
         fill color have no effect on or interaction with this method.
         """
         ################################################################
-        # TODO: 9.
+        # DONE: 9.
         #   First, READ the doc-string (specification) above.
         #   Second, READ the   run_test_change_to_next_color_in_tuple
         #   function (below).  Third, implement and test this method.
         ################################################################
+        if self.times <= self.length - 1:
+            self.circle.fill_color = self.colors[self.times]
+        else:
+            self.times = 0
+            self.circle.fill_color = self.colors[self.times]
+        self.times = self.times + 1
 
 
 ########################################################################
